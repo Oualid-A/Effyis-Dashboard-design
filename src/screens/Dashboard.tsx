@@ -10,7 +10,7 @@ import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import { HeaderComponent } from "../components/Header";
 import { Chart } from "../components/Chart";
 import Orders from "../components/Orders";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 const options = ["This week", "Last month", "Last year"];
 
 const ITEM_HEIGHT = 48;
@@ -399,8 +399,11 @@ export const Dashboard = () => {
               </div>
             </div>
           </div>
-          <div className="flex  lg:w-2/5 h-auto bg-white p-6 shadow rounded-xl">
-            <Orders/>
+          <div className="flex flex-col lg:w-2/5 h-auto bg-white p-6 shadow rounded-xl">
+            <div className="text-xl font-semibold mb-4">Recent Orders</div>
+            <div className="flex-grow flex items-center justify-center">
+              <Orders />
+            </div>
           </div>
         </div>
       </div>

@@ -1,11 +1,9 @@
-import { DownOutlined } from "@ant-design/icons";
 import ReactApexChart from "react-apexcharts";
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const timeFrames = ["Last 8 days", "Last month", "Last year"];
 

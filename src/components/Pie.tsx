@@ -2,9 +2,8 @@ import { Pie } from "react-chartjs-2";
 import "chart.js/auto";
 import * as React from "react";
 import IconButton from "@mui/material/IconButton";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Menu, MenuItem } from "@mui/material";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const options = ["This week", "Last month", "Last year"];
 
@@ -16,25 +15,21 @@ export const PieChart = () => {
       {
         label: "Marketing Data",
         data: [12, 19, 3],
-        backgroundColor: [
-          "#FF6384",
-          "#36A2EB",
-          "#FFCE56"
-        ],
-        hoverOffset: 4 ,
+        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        hoverOffset: 4,
       },
     ],
   };
   const chartOptions = {
     plugins: {
       legend: {
-        position: 'top', 
+        position: "top",
         labels: {
           usePointStyle: true,
-        }
-      }
+        },
+      },
     },
-    cutout: '50%',
+    cutout: "50%",
   };
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
