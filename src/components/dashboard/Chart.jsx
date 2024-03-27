@@ -1,19 +1,14 @@
+import React, { useState } from "react";
 import ReactApexChart from "react-apexcharts";
-import * as React from "react";
-import IconButton from "@mui/material/IconButton";
-import { Menu, MenuItem } from "@mui/material";
-import { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const timeFrames = ["Last 8 days", "Last month", "Last year"];
 
-const ITEM_HEIGHT = 48;
-
-export const Chart = () => {
+const Chart = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState("Sales");
   const dropdownItems = ["Sales", "Revenue", "Profit"];
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const [timeFrame, setTimeFrame] = useState(timeFrames[0]);
 
@@ -22,7 +17,7 @@ export const Chart = () => {
       type: "bar",
       height: 350,
       toolbar: {
-        show: false, // This hides the entire toolbar, including the export menu
+        show: false,
       },
     },
     plotOptions: {
@@ -59,7 +54,7 @@ export const Chart = () => {
     },
     yaxis: {
       labels: {
-        formatter: (val: string) => {
+        formatter: (val) => {
           return val + "k";
         },
       },
@@ -76,7 +71,7 @@ export const Chart = () => {
     },
     tooltip: {
       y: {
-        formatter: function (val: string) {
+        formatter: function (val) {
           return val + " K";
         },
       },
@@ -89,23 +84,25 @@ export const Chart = () => {
       data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
     },
   ]);
-  const handleTimeFrameClick = (event: React.MouseEvent<HTMLElement>) => {
-    setTimeFrame(event.currentTarget.textContent as string); // Update time frame
+
+  const handleTimeFrameClick = (event) => {
+    setTimeFrame(event.currentTarget.textContent);
     handleClose();
   };
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   return (
     <>
-      <div className="flex flex-row items-center justify-between">
-        <div className="flex items-center space-x-6">
-          <div className="text-lg font-medium tracking-tight leading-6 truncate">
+     
+        <div className="flex items-center justify-between space-x-6">
+          <div className="md:text-lg text-sm font-medium tracking-tight leading-6 truncate">
             Summary
           </div>
           <div className="relative ">
@@ -120,7 +117,7 @@ export const Chart = () => {
                 {dropdownItems.map((item, index) => (
                   <div
                     key={index}
-                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    className="px-4 md:text-lg text-sms py-2 hover:bg-gray-100 cursor-pointer"
                     onClick={() => {
                       setSelectedItem(item);
                       setDropdownOpen(false);
@@ -133,45 +130,7 @@ export const Chart = () => {
             )}
           </div>
         </div>
-        <div className="ml-2 -mt-2 -mr-3">
-          <span className="font-medium">{timeFrame}</span>
-          <IconButton
-            aria-label="more"
-            id="long-button"
-            aria-controls={open ? "long-menu" : undefined}
-            aria-expanded={open ? "true" : undefined}
-            aria-haspopup="true"
-            onClick={handleClick}
-          >
-            <KeyboardArrowDownIcon />
-          </IconButton>
-          <Menu
-            id="long-menu"
-            MenuListProps={{
-              "aria-labelledby": "long-button",
-            }}
-            anchorEl={anchorEl}
-            open={open}
-            onClose={handleClose}
-            PaperProps={{
-              style: {
-                maxHeight: ITEM_HEIGHT * 4.5,
-                width: "20ch",
-              },
-            }}
-          >
-            {timeFrames.map((option) => (
-              <MenuItem
-                key={option}
-                selected={option === timeFrame}
-                onClick={handleTimeFrameClick}
-              >
-                {option}
-              </MenuItem>
-            ))}
-          </Menu>
-        </div>
-      </div>
+       
 
       <div id="chart">
         <ReactApexChart
@@ -184,3 +143,4 @@ export const Chart = () => {
     </>
   );
 };
+export default Chart;

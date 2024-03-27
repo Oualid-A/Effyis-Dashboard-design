@@ -1,6 +1,6 @@
+import React, { useState } from "react";
 import { Pie } from "react-chartjs-2";
 import "chart.js/auto";
-import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import { Menu, MenuItem } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -8,7 +8,8 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 const options = ["This week", "Last month", "Last year"];
 
 const ITEM_HEIGHT = 48;
-export const PieChart = () => {
+
+const PieChart = () => {
   const data = {
     labels: ["Acquisition", "Purchase", "Retention"],
     datasets: [
@@ -31,14 +32,17 @@ export const PieChart = () => {
     },
     cutout: "50%",
   };
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const openMenu = Boolean(anchorEl);
+
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <>
       <div className="flex items-center justify-between">
@@ -49,8 +53,8 @@ export const PieChart = () => {
           <IconButton
             aria-label="more"
             id="long-button"
-            aria-controls={open ? "long-menu" : undefined}
-            aria-expanded={open ? "true" : undefined}
+            aria-controls={openMenu ? "long-menu" : undefined}
+            aria-expanded={openMenu ? "true" : undefined}
             aria-haspopup="true"
             onClick={handleClick}
           >
@@ -62,7 +66,7 @@ export const PieChart = () => {
               "aria-labelledby": "long-button",
             }}
             anchorEl={anchorEl}
-            open={open}
+            open={openMenu}
             onClose={handleClose}
             PaperProps={{
               style: {
@@ -89,3 +93,5 @@ export const PieChart = () => {
     </>
   );
 };
+
+export default PieChart;
